@@ -9,13 +9,34 @@
 import SwiftUI
 
 struct BookDetail: View {
+    let book:Book
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView{
+        VStack{
+            Image(book.imageUrl)
+            .resizable()
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(16)
+                .padding()
+            VStack(alignment: .leading){
+                Text(book.name)
+                    .font(.largeTitle)
+                    .foregroundColor(Color.blue)
+                    .padding()
+                Text(book.description)
+                    .font(.body)
+                    .foregroundColor(Color.gray)
+                 .padding()
+            }
+            
+        }
+        .navigationBarTitle(Text(book.name),displayMode: .large)
+    }
     }
 }
 
 struct BookDetail_Previews: PreviewProvider {
     static var previews: some View {
-        BookDetail()
+        BookDetail(book: Book(name: "Dummy", description: "Dummy Dummy Dummy", imageUrl: "algo"))
     }
 }
